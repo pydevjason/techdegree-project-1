@@ -22,6 +22,7 @@ def start_game():
                     print("Thank you for playing!")
                     num = False
                 elif play_again == "y":
+                    print(f"The next player should try to score less than {count} attempts")
                     start_game()
                 else:
                     print("Invalid input.  The game will now restart.")
