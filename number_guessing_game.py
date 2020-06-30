@@ -1,6 +1,6 @@
 import random
-
-def start_game():
+high_score = None
+def start_game(high_score):
     print("Welcome to the NUMBER GUESSING GAME!")
     num = random.randint(1,10)
     count = 1
@@ -14,7 +14,9 @@ def start_game():
             elif prompt < num:
                 print("too low".capitalize())
             else:
-                print(f"You got it ! You made {count} attempts in finding the number")
+                print(f"You got it ! It took you {count} times to find the number")
+                if high_score == None or count < high_score:
+                    high_score = count
                 print("The game is now over.\n")
                 num = False
                 play_again = input("Do you want to play again? ")
@@ -22,14 +24,15 @@ def start_game():
                     print("Thank you for playing!")
                     num = False
                 elif play_again == "y":
-                    print(f"The next player should try to score less than {count} attempts")
-                    start_game()
+                    print(f"The high score is {high_score}")
+                    start_game(high_score)
                 else:
                     print("Invalid input.  The game will now restart.")
-                    start_game()
+                    start_game(high_score)
+
             count += 1
-            print()
+
         except ValueError:
             print("input must be a numeric value between 1 and 10 inclusive")
 
-start_game()
+start_game(high_score)
